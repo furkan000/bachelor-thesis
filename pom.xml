@@ -58,6 +58,8 @@
 		<module>kurento-rtp-receiver</module>
 		<module>kurento-send-data-channel</module>
 		<module>kurento-show-data-channel</module>
+		<module>kurento-furkan-mcu</module>
+		<module>kurento-furkan-dmcu-1</module>
 	</modules>
 
 	<repositories>
