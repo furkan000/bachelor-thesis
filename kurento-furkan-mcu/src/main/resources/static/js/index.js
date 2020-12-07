@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-const ws = new WebSocket('wss://' + location.host + '/helloworld');
+const ws = new WebSocket('ws://' + location.host + '/helloworld');
 
 let webRtcPeer;
 

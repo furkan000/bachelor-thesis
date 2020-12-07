@@ -60,6 +60,10 @@
 		<module>kurento-show-data-channel</module>
 		<module>kurento-furkan-mcu</module>
 		<module>kurento-furkan-dmcu-1</module>
+		<module>kurento-furkan-dmcu-2</module>
+		<module>kurento-furkan-webrtc-client</module>
+		<module>kurento-furkan-mmcu-1</module>
+		<module>kurento-furkan-mmcu-2</module>
 	</modules>
 
 	<repositories>
