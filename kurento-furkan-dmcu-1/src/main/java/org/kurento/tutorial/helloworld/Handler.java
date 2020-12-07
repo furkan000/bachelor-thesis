@@ -21,13 +21,19 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URI;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutionException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketHttpHeaders;
 import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.client.WebSocketClient;
+import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 // Kurento client
@@ -50,6 +56,8 @@ import org.kurento.client.MediaFlowOutStateChangeEvent;
 import org.kurento.client.MediaStateChangedEvent;
 import org.kurento.client.MediaTranscodingStateChangeEvent;
 import org.kurento.client.NewCandidatePairSelectedEvent;
+
+import javax.annotation.PostConstruct;
 
 
 /**
@@ -126,6 +134,9 @@ public class Handler extends TextWebSocketHandler
         case "ERROR":
           handleError(session, jsonMessage);
           break;
+        case "PROCESS_SDP_ANSWER":
+          handleAnswer(session, jsonMessage);
+          break;
         default:
           // Ignore the message
           log.warn("[Handler::handleTextMessage] Skip, invalid message, id: {}",
@@ -186,6 +197,45 @@ public class Handler extends TextWebSocketHandler
       message.addProperty("message", errMsg);
       sendMessage(session, message.toString());
     }
+  }
+
+  // FURKAN --------------------------------------------------------------------
+
+  private UserSession disUserSession = new UserSession();
+  // webSocketSession could also be usefull as a parameter
+
+  @PostConstruct
+  private void myFunc() throws ExecutionException, InterruptedException {
+    // webSocketSession
+    WebSocketHttpHeaders headers = new WebSocketHttpHeaders();
+    URI uri = URI.create("ws://localhost:8002/helloworld");
+    WebSocketClient webSocketClient = new StandardWebSocketClient();
+    WebSocketSession webSocketSession = webSocketClient.doHandshake(this, headers, uri).get();
+
+    // pipeline, endpoint, userSession
+    MediaPipeline pipeline = kurento.createMediaPipeline();
+    WebRtcEndpoint endpoint = new WebRtcEndpoint.Builder(pipeline).build();
+    disUserSession.setWebRtcEndpoint(endpoint);
+    disUserSession.setMediaPipeline(pipeline);
+    users.put(webSocketSession.getId(), disUserSession);
+
+    // init endpoint event listener
+    initBaseEventListeners(webSocketSession, endpoint, "WebRtcEndpoint");
+    initWebRtcEventListeners(webSocketSession, endpoint);
+
+    // generate, send offer
+    String offer = endpoint.generateOffer();
+    JsonObject message = new JsonObject();
+    message.addProperty("id", "PROCESS_SDP_OFFER");
+    message.addProperty("sdpOffer", offer);
+    sendMessage(webSocketSession, message.toString());
+  }
+
+  private void handleAnswer(final WebSocketSession session, JsonObject jsonMessage) {
+    log.info("received answer");
+    String sdpAnswer = jsonMessage.get("sdpAnswer").getAsString();
+    disUserSession.getWebRtcEndpoint().processAnswer(sdpAnswer);
+    disUserSession.getWebRtcEndpoint().gatherCandidates();
   }
 
   // PROCESS_SDP_OFFER ---------------------------------------------------------
@@ -389,10 +439,11 @@ public class Handler extends TextWebSocketHandler
     user.setMediaPipeline(pipeline);
 
     final WebRtcEndpoint webRtcEp =
-        new WebRtcEndpoint.Builder(pipeline).build();
+        new WebRtcEndpoint.Builder(disUserSession.getMediaPipeline()).build();
     user.setWebRtcEndpoint(webRtcEp);
-    webRtcEp.connect(webRtcEp);
 
+    webRtcEp.connect(disUserSession.getWebRtcEndpoint());
+    disUserSession.getWebRtcEndpoint().connect(webRtcEp);
 
     // ---- Endpoint configuration
 
