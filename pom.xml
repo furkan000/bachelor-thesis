@@ -64,6 +64,8 @@
 		<module>kurento-furkan-webrtc-client</module>
 		<module>kurento-furkan-mmcu-1</module>
 		<module>kurento-furkan-mmcu-2</module>
+		<module>kurento-furkan-dsfu-1</module>
+		<module>kurento-furkan-dsfu-2</module>
 	</modules>
 
 	<repositories>
