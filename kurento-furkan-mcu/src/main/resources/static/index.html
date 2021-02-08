@@ -125,4 +125,15 @@
   </footer>
 </body>
 
+<script>
+  async function pressButton(){
+    await new Promise(r => setTimeout(r, 3000));
+    // while(!document.getElementById('uiStartBtn')) {
+    //   await new Promise(r => setTimeout(r, 500));
+    // }s
+    document.getElementById('uiStartBtn').click();
+  }
+  pressButton();
+</script>
+
 </html>
