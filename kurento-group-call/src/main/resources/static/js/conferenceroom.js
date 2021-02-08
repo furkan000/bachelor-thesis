@@ -53,6 +53,30 @@ ws.onmessage = function(message) {
 	}
 }
 
+ws.onopen = function () {
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	const queryName = urlParams.get('name')
+	const queryRoom = urlParams.get('room')
+	console.log(queryName + " " + queryRoom);
+
+	if(queryName != null && queryRoom != null){
+		name = queryName;
+		var room = queryRoom;
+
+		document.getElementById('room-header').innerText = 'ROOM ' + room;
+		document.getElementById('join').style.display = 'none';
+		document.getElementById('room').style.display = 'block';
+
+		var message = {
+			id : 'joinRoom',
+			name : name,
+			room : room,
+		}
+		sendMessage(message);
+	}
+}
+
 function register() {
 	name = document.getElementById('name').value;
 	var room = document.getElementById('roomName').value;
@@ -93,13 +117,7 @@ function callResponse(message) {
 function onExistingParticipants(msg) {
 	var constraints = {
 		audio : true,
-		video : {
-			mandatory : {
-				maxWidth : 320,
-				maxFrameRate : 15,
-				minFrameRate : 15
-			}
-		}
+		video : true
 	};
 	console.log(name + " registered in room " + room);
 	var participant = new Participant(name);

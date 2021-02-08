@@ -38,7 +38,15 @@ function Participant(name) {
 	container.appendChild(video);
 	container.appendChild(span);
 	container.onclick = switchContainerClass;
-	document.getElementById('participants').appendChild(container);
+
+	if(true){
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		const headless = urlParams.get('headless')
+		if(headless !== "true") {
+			document.getElementById('participants').appendChild(container);
+		}
+	}
 
 	span.appendChild(document.createTextNode(name));
 

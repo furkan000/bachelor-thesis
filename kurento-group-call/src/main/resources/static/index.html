@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="styleSheet" href="style.css" type="text/css" media="screen">
+<!--<link rel="styleSheet" href="style.css" type="text/css" media="screen">-->
 
 <script src="/webjars/webrtc-adapter/release/adapter.js"></script>
 <script src="./js/conferenceroom.js"></script>
@@ -36,4 +36,35 @@
 		</div>
 	</div>
 </body>
+
+<style>
+	#participants {
+		display: flex;
+		flex-direction: auto;
+		flex-wrap: wrap;
+		/* height: 50px; */
+	}
+</style>
+
+
+<script>
+	// const queryString = window.location.search;
+	// const urlParams = new URLSearchParams(queryString);
+	// const queryName = urlParams.get('name')
+	// const queryRoom = urlParams.get('room')
+	// console.log(queryName + " " + queryRoom);
+	// if(queryName != null && queryRoom != null){
+	// 	document.getElementById('room-header').innerText = 'ROOM ' + room;
+	// 	document.getElementById('join').style.display = 'none';
+	// 	document.getElementById('room').style.display = 'block';
+	//
+	// 	var message = {
+	// 		id : 'joinRoom',
+	// 		name : name,
+	// 		room : room,
+	// 	}
+	// 	sendMessage(message);
+	// }
+</script>
+
 </html>
