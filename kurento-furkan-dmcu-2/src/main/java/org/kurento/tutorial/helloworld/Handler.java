@@ -377,7 +377,7 @@ public class Handler extends TextWebSocketHandler
   private void myFunc() throws ExecutionException, InterruptedException {
     // webSocketSession
     WebSocketHttpHeaders headers = new WebSocketHttpHeaders();
-    URI uri = URI.create("ws://localhost:8443/helloworld");
+    URI uri = URI.create("ws://18.195.137.89:8443/helloworld");
     WebSocketClient webSocketClient = new StandardWebSocketClient();
     WebSocketSession webSocketSession = webSocketClient.doHandshake(this, headers, uri).get();
 
