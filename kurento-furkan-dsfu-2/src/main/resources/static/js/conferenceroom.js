@@ -15,7 +15,7 @@
  *
  */
 
-var ws = new WebSocket('ws://' + "localhost:8000" + '/helloworld');
+var ws = new WebSocket('ws://' + "18.195.137.89:8000" + '/helloworld');
 var participants = {};
 var name;
 
@@ -100,13 +100,7 @@ function callResponse(message) {
 function onExistingParticipants(msg) {
 	var constraints = {
 		audio : true,
-		video : {
-			mandatory : {
-				maxWidth : 320,
-				maxFrameRate : 15,
-				minFrameRate : 15
-			}
-		}
+		video : true
 	};
 	console.log(name + " registered in room " + room);
 	var participant = new Participant(name);
