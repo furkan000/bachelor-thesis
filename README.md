@@ -27,13 +27,13 @@ Information
 - Run a Kurento application by moving in the respective directory i.e. `kurento-group-call` and run `mvn -U clean spring-boot:run` or `mvn -U clean spring-boot:run \
   -Dspring-boot.run.jvmArguments="-Dkms.url=ws://{KMS_HOST}:8888/kurento"` if a Kurento Media Server is not installed locally.
 
-## How to run DSFU
+## How to run the DSFU
 - Make sure node and npm are installed and ports 8000,8001 and 8002 are available
 - Run node-webrtc-sfu by `npm install; node index.js`
 - Run kurento-furkan-dsfu-1 and kurento-furkan-dsfu-1 see above
 - go to http://localhost:8001/ in multiple tabs
 
-## How to run DMCU
+## How to run the DMCU
 - Make sure node and npm are installed and ports 8000,8001 and 8002 are available
 - Run node-webrtc-sfu by `npm install; node index.js`
 - Run kurento-furkan-dsfu-1 and kurento-furkan-dsfu-1 see above
