@@ -19,7 +19,7 @@
 	<!-- Project configuration -->
 
 	<properties>
-		<demo.port>8443</demo.port>
+		<demo.port>8002</demo.port>
 		<start-class>org.kurento.tutorial.helloworld.Application</start-class>
 	</properties>
 
