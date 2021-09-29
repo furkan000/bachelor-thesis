@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="webrtc.js"></script>
+  </head>
+
+  <body>
+    <video id="localVideo" autoplay muted style="width:40%;"></video>
+    <video id="remoteVideo" autoplay style="width:40%;"></video>
+
+    <br />
+
+    <input type="button" id="start" onclick="start(true)" value="Start Video"></input>
+    <input type="button" id="testButton" onclick="newPeer()" value="Test Button"></input>
+
+    <div class="video-area">
+      <br>
+      <h2>Remote Streams</h2>
+      <table border="0" id="test-table"></table>
+    </div>
+
+    <script type="text/javascript">
+        pageReady();
+    </script>
+  </body>
+</html>
