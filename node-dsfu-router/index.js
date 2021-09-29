@@ -1,7 +1,7 @@
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 const WebSocket = require('ws');
 
-var servers = ['ws://18.195.137.89:8443/helloworld', 'ws://18.159.244.138:8443/helloworld'];
+var servers = ['ws://localhost:8001/helloworld', 'ws://localhost:8002/helloworld'];
 var sessions = [];
 var names = [];
 
@@ -26,6 +26,7 @@ wss.on('connection', function connection(ws) {
 /* -------------------------------------------------------------------------- */
 
 function handleServerMessage(ws, number, answer) {
+  answer = answer.toString();
   console.log("SFU" + number + ": " + answer.substr(0, 100));
   let json = JSON.parse(answer);
 
@@ -51,6 +52,7 @@ function handleServerMessage(ws, number, answer) {
 }
 
 function handleClientMessage(ws, message) {
+  message = message.toString();
   console.log('client' + sessions.indexOf(ws) + ' :' + message.substr(0, 100));
   let json = JSON.parse(message);
 

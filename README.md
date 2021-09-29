@@ -1,67 +1,113 @@
-[![License badge](https://img.shields.io/badge/license-Apache2-orange.svg)](http://www.apache.org/licenses/LICENSE-2.0)
-[![Documentation badge](https://readthedocs.org/projects/fiware-orion/badge/?version=latest)](https://doc-kurento.readthedocs.io)
-[![Docker badge](https://img.shields.io/docker/pulls/fiware/orion.svg)](https://hub.docker.com/r/fiware/stream-oriented-kurento/)
-[![Support badge]( https://img.shields.io/badge/support-sof-yellowgreen.svg)](https://stackoverflow.com/questions/tagged/kurento)
+[comment]: <> ([![License badge]&#40;https://img.shields.io/badge/license-Apache2-orange.svg&#41;]&#40;http://www.apache.org/licenses/LICENSE-2.0&#41;)
 
-[![][KurentoImage]][Kurento]
+[comment]: <> ([![Documentation badge]&#40;https://readthedocs.org/projects/fiware-orion/badge/?version=latest&#41;]&#40;https://doc-kurento.readthedocs.io&#41;)
 
-Copyright 2018 [Kurento]. Licensed under [Apache 2.0 License].
+[comment]: <> ([![Docker badge]&#40;https://img.shields.io/docker/pulls/fiware/orion.svg&#41;]&#40;https://hub.docker.com/r/fiware/stream-oriented-kurento/&#41;)
+
+[comment]: <> ([![Support badge]&#40; https://img.shields.io/badge/support-sof-yellowgreen.svg&#41;]&#40;https://stackoverflow.com/questions/tagged/kurento&#41;)
+
+[comment]: <> ([![][KurentoImage]][Kurento])
+
+[comment]: <> (Copyright 2018 [Kurento]. Licensed under [Apache 2.0 License].)
 
 [Kurento]: https://kurento.org
 [KurentoImage]: https://secure.gravatar.com/avatar/21a2a12c56b2a91c8918d5779f1778bf?s=120
 [Apache 2.0 License]: http://www.apache.org/licenses/LICENSE-2.0
 
-
-
-Kurento Java tutorials
+Information
 ======================
+- kurento-group-call is the SFU application used
+- kurento-furkan-mcu is the MCU used
+- kurento-furkan-dmcu-1 and dmcu-2 is the DMCU tested
+- kurento-furkan-mmcu-1 and mmcu-2 are the MCU unit-2-unit approach that does not work as intended due to bug in Kurento.
+- kurento-furkan-dsfu-1 and dsfu-2 together with node-dsfu-router is the DSFU tested
+#How to run a Kurento Application
+- Make sure Kurento Media Server is installed, a local installation is recommended see https://doc-kurento.readthedocs.io/en/stable/user/installation.html#local-installation for more information
+- Make sure that Maven and Java 8 is installed
+- Run a Kurento application by moving in the respective directory i.e. `kurento-group-call` and run `mvn -U clean spring-boot:run` or `mvn -U clean spring-boot:run \
+  -Dspring-boot.run.jvmArguments="-Dkms.url=ws://{KMS_HOST}:8888/kurento"` if a Kurento Media Server is not installed locally.
 
-Demo applications that showcase how to use the Kurento Java Client.
+## How to run DSFU
+- Make sure node and npm are installed and ports 8000,8001 and 8002 are available
+- Run node-webrtc-sfu by `npm install; node index.js`
+- Run kurento-furkan-dsfu-1 and kurento-furkan-dsfu-1 see above
+- go to http://localhost:8001/ in multiple tabs
+
+## How to run DMCU
+- Make sure node and npm are installed and ports 8000,8001 and 8002 are available
+- Run node-webrtc-sfu by `npm install; node index.js`
+- Run kurento-furkan-dsfu-1 and kurento-furkan-dsfu-1 see above
+- open http://localhost:8001/ for MCU 1 and http://localhost:8002/ for MCU 2 both show the result from their parent MCU
+
+## How to run our own SFU built with node.js
+- Note: bad performance due to limitations of the WebRTC engine used
+- navigate to node-webrtc-sfu
+- `npm install`
+- `npm start`
+- visit https://localhost:8443
+
+
+[comment]: <> (Kurento Java tutorials)
+
+[comment]: <> (======================)
+
+[comment]: <> (Demo applications that showcase how to use the Kurento Java Client.)
 
 
 
-About Kurento
-=============
+[comment]: <> (About Kurento)
 
-Kurento is an open source software project providing a platform suitable for creating modular applications with advanced real-time communication capabilities. For knowing more about Kurento, please visit the Kurento project website: https://www.kurento.org.
+[comment]: <> (=============)
 
-Kurento is part of [FIWARE]. For further information on the relationship of FIWARE and Kurento check the [Kurento FIWARE Catalog Entry]. Kurento is also part of the [NUBOMEDIA] research initiative.
+[comment]: <> (Kurento is an open source software project providing a platform suitable for creating modular applications with advanced real-time communication capabilities. For knowing more about Kurento, please visit the Kurento project website: https://www.kurento.org.)
 
-[FIWARE]: http://www.fiware.org
-[Kurento FIWARE Catalog Entry]: http://catalogue.fiware.org/enablers/stream-oriented-kurento
-[NUBOMEDIA]: http://www.nubomedia.eu
+[comment]: <> (Kurento is part of [FIWARE]. For further information on the relationship of FIWARE and Kurento check the [Kurento FIWARE Catalog Entry]. Kurento is also part of the [NUBOMEDIA] research initiative.)
 
+[comment]: <> ([FIWARE]: http://www.fiware.org)
 
+[comment]: <> ([Kurento FIWARE Catalog Entry]: http://catalogue.fiware.org/enablers/stream-oriented-kurento)
 
-Documentation
--------------
-
-The Kurento project provides detailed [documentation] including tutorials, installation and development guides. The [Open API specification], also known as *Kurento Protocol*, is available on [apiary.io].
-
-[documentation]: https://www.kurento.org/documentation
-[Open API specification]: http://kurento.github.io/doc-kurento/
-[apiary.io]: http://docs.streamoriented.apiary.io/
+[comment]: <> ([NUBOMEDIA]: http://www.nubomedia.eu)
 
 
 
-Useful Links
-------------
+[comment]: <> (Documentation)
 
-Usage:
+[comment]: <> (-------------)
 
-* [Installation Guide](http://doc-kurento.readthedocs.io/en/stable/user/installation.html)
-* [Compilation Guide](http://doc-kurento.readthedocs.io/en/stable/dev/dev_guide.html#developing-kms)
-* [Contribution Guide](http://doc-kurento.readthedocs.io/en/stable/project/contribute.html)
+[comment]: <> (The Kurento project provides detailed [documentation] including tutorials, installation and development guides. The [Open API specification], also known as *Kurento Protocol*, is available on [apiary.io].)
 
-Issues:
+[comment]: <> ([documentation]: https://www.kurento.org/documentation)
 
-* [Bug Tracker](https://github.com/Kurento/bugtracker/issues)
-* [Support](http://doc-kurento.readthedocs.io/en/stable/user/support.html)
+[comment]: <> ([Open API specification]: http://kurento.github.io/doc-kurento/)
 
-News:
+[comment]: <> ([apiary.io]: http://docs.streamoriented.apiary.io/)
 
-* [Kurento Blog](https://www.kurento.org/blog)
-* [Google Groups](https://groups.google.com/forum/#!forum/kurento)
+
+
+[comment]: <> (Useful Links)
+
+[comment]: <> (------------)
+
+[comment]: <> (Usage:)
+
+[comment]: <> (* [Installation Guide]&#40;http://doc-kurento.readthedocs.io/en/stable/user/installation.html&#41;)
+
+[comment]: <> (* [Compilation Guide]&#40;http://doc-kurento.readthedocs.io/en/stable/dev/dev_guide.html#developing-kms&#41;)
+
+[comment]: <> (* [Contribution Guide]&#40;http://doc-kurento.readthedocs.io/en/stable/project/contribute.html&#41;)
+
+[comment]: <> (Issues:)
+
+[comment]: <> (* [Bug Tracker]&#40;https://github.com/Kurento/bugtracker/issues&#41;)
+
+[comment]: <> (* [Support]&#40;http://doc-kurento.readthedocs.io/en/stable/user/support.html&#41;)
+
+[comment]: <> (News:)
+
+[comment]: <> (* [Kurento Blog]&#40;https://www.kurento.org/blog&#41;)
+
+[comment]: <> (* [Google Groups]&#40;https://groups.google.com/forum/#!forum/kurento&#41;)
 
 
 

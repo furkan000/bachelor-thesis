@@ -15,7 +15,7 @@
  *
  */
 
-var ws = new WebSocket('ws://' + "18.195.137.89:8000" + '/helloworld');
+var ws = new WebSocket('ws://' + "localhost:8000" + '/helloworld');
 var participants = {};
 var name;
 
