@@ -25,7 +25,7 @@
 # Requirements
 - Make sure Kurento Media Server is installed, a local installation is recommended see https://doc-kurento.readthedocs.io/en/stable/user/installation.html#local-installation for more information
   - Kurento Media Server can also be installed via Docker by running `sudo docker run -d --name kms --network host kurento/kurento-media-server:6.15`  
-- Make sure that Java 8, Maven and Node.js are installed
+- Make sure that Java 8, Maven and Node.js (we use v16.3.0) are installed
 
 # How to Run
 
