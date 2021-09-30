@@ -57,7 +57,7 @@
 - visit http://localhost:8443/
 
 ## How to run the SFU
-- Run kurento-furkan-mcu (see "How to run a Kurento Java Application")
+- Run kurento-group-call (see "How to run a Kurento Java Application")
 - visit https://localhost:8443/
 
 
