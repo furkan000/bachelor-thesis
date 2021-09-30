@@ -17,15 +17,15 @@
 # Information
 - kurento-group-call is the SFU application used
 - kurento-furkan-mcu is the MCU used
-- kurento-furkan-dmcu-1, kurento-furkan-dmcu-2 and kurento-furkan-dmcu-1 is the DMCU tested
-- kurento-furkan-mmcu-1 and mmcu-2 are the MCU unit-2-unit approach that does not work as intended due to bug in Kurento.
-- kurento-furkan-dsfu-1 and dsfu-2 together with node-dsfu-router is the DSFU tested
+- kurento-furkan-dmcu-1, kurento-furkan-dmcu-2 and kurento-furkan-mcu is the DMCU tested
+- kurento-furkan-mmcu-1 and mmcu-2 are the DMCU unit-2-unit approach that does not work as intended due to bug in Kurento.
+- kurento-furkan-dsfu-1, dsfu-2 together with node-dsfu-router is the DSFU tested
 - node-webrtc-sfu is our own SFU
 
 # Requirements
 - Make sure Kurento Media Server is installed, a local installation is recommended see https://doc-kurento.readthedocs.io/en/stable/user/installation.html#local-installation for more information
   - Kurento Media Server can also be installed via Docker by running `sudo docker run -d --name kms --network host kurento/kurento-media-server:6.15`  
-- Make sure that Java 8, Maven and Node.js (we use v16.3.0) are installed
+- Make sure that Java 8, Maven, Node.js (we use v16.3.0) and npm are installed
 
 # How to Run
 
@@ -35,7 +35,7 @@
 
 ## How to run the DSFU
 - Make sure node and npm are installed and ports 8000, 8001 and 8002 are available
-- Run node-webrtc-sfu by `npm install; node index.js`
+- Run node-dsfu-router by `npm install; node index.js`
 - Run kurento-furkan-dsfu-1 and kurento-furkan-dsfu-2 (see above)
 - go to http://localhost:8001/ in multiple tabs
 
