@@ -17,7 +17,7 @@
 # Information
 - kurento-group-call is the SFU application used
 - kurento-furkan-mcu is the MCU used
-- kurento-furkan-dmcu-1 and dmcu-2 is the DMCU tested
+- kurento-furkan-dmcu-1, kurento-furkan-dmcu-2 and kurento-furkan-dmcu-1 is the DMCU tested
 - kurento-furkan-mmcu-1 and mmcu-2 are the MCU unit-2-unit approach that does not work as intended due to bug in Kurento.
 - kurento-furkan-dsfu-1 and dsfu-2 together with node-dsfu-router is the DSFU tested
 - node-webrtc-sfu is our own SFU
@@ -36,7 +36,7 @@
 ## How to run the DSFU
 - Make sure node and npm are installed and ports 8000, 8001 and 8002 are available
 - Run node-webrtc-sfu by `npm install; node index.js`
-- Run kurento-furkan-dsfu-1 and kurento-furkan-dsfu-1 (see above)
+- Run kurento-furkan-dsfu-1 and kurento-furkan-dsfu-2 (see above)
 - go to http://localhost:8001/ in multiple tabs
 
 ## How to run the DMCU
