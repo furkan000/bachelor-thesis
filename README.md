@@ -14,7 +14,14 @@
 [KurentoImage]: https://secure.gravatar.com/avatar/21a2a12c56b2a91c8918d5779f1778bf?s=120
 [Apache 2.0 License]: http://www.apache.org/licenses/LICENSE-2.0
 
-# Information
+# Design and Evaluation of Distributed WebRTC Architectures
+
+<!-- <img src="https://github.com/furkan000/bachelor-thesis/blob/master/docs/DSFU-Legend-1.png?raw=true" width="50%" /><img src="https://github.com/furkan000/bachelor-thesis/blob/master/docs/DMCU-Legend-1.png?raw=true" width="50%" /> -->
+
+
+# [PDF](https://github.com/furkan000/bachelor-thesis/blob/master/docs/bachelor-thesis-design-and-evaluation-of-distributed-webrtc-architectures.pdf?raw=true)
+
+## Code Overview
 - kurento-group-call is the SFU application used
 - kurento-furkan-mcu is the MCU used
 - kurento-furkan-dmcu-1, kurento-furkan-dmcu-2 and kurento-furkan-mcu is the DMCU tested
@@ -22,41 +29,41 @@
 - kurento-furkan-dsfu-1, dsfu-2 together with node-dsfu-router is the DSFU tested
 - node-webrtc-sfu is our own SFU
 
-# Requirements
+## Requirements
 - Make sure Kurento Media Server is installed, a local installation is recommended see https://doc-kurento.readthedocs.io/en/stable/user/installation.html#local-installation for more information
   - Kurento Media Server can also be installed via Docker by running `sudo docker run -d --name kms --network host kurento/kurento-media-server:6.15`  
 - Make sure that Java 8, Maven, Node.js (we use v16.3.0) and npm are installed
 
-# How to Run
+## How to Run
 
-## How to run a Kurento Java Application
+### How to run a Kurento Java Application
 - Make sure that Java 8, Maven, Node.js and Kurento Media Server are installed
 - Run a Kurento application by moving in the respective directory i.e. `kurento-group-call` and run `mvn -U clean spring-boot:run`, make sure that Kurento Media Server is running
 
-## How to run the DSFU
+### How to run the DSFU
 - Make sure node and npm are installed and ports 8000, 8001 and 8002 are available
 - Run node-dsfu-router by `npm install; node index.js`
 - Run kurento-furkan-dsfu-1 and kurento-furkan-dsfu-2 (see above)
 - go to http://localhost:8001/ in multiple tabs
 
-## How to run the DMCU
+### How to run the DMCU
 - Make sure node and npm are installed and ports 8000, 8001 and 8002 are available
 - Run kurento-furkan-mcu (see "How to run a Kurento Java Application")
 - Run kurento-furkan-dmcu-1 and kurento-furkan-dmcu-2
 - open http://localhost:8001/ for MCU 1 and http://localhost:8002/ for MCU 2, both show the result from their parent MCU
 
-## How to run our own SFU built with node.js
+### How to run our own SFU built with node.js
 - Note: bad performance due to limitations of the WebRTC engine used
 - navigate to node-webrtc-sfu
 - `npm install`
 - `npm start`
 - visit https://localhost:8443
 
-## How to run the MCU
+### How to run the MCU
 - Run kurento-furkan-mcu (see "How to run a Kurento Java Application")
 - visit http://localhost:8443/
 
-## How to run the SFU
+### How to run the SFU
 - Run kurento-group-call (see "How to run a Kurento Java Application")
 - visit https://localhost:8443/
 
@@ -125,7 +132,7 @@
 
 
 
-# Source
+## Source
 
 All source code belonging to the Kurento project can be found in the [Kurento GitHub organization page].
 
@@ -133,7 +140,7 @@ All source code belonging to the Kurento project can be found in the [Kurento Gi
 
 
 
-# Licensing and distribution
+## Licensing and distribution
 
 Copyright 2018 Kurento
 
