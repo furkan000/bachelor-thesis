@@ -21,6 +21,19 @@
 
 # [PDF](https://github.com/furkan000/bachelor-thesis/blob/master/docs/bachelor-thesis-design-and-evaluation-of-distributed-webrtc-architectures.pdf?raw=true)
 
+## Abstract
+The aim of this thesis is to design novel distributed Web Real-Time Communication
+(WebRTC) architectures and compare and evaluate them together with traditional models.
+The traditional WebRTC models either only allow for a small number of participants in a
+session or use a central media server in a star topology. The central node leads to various
+restrictions. To circumvent the shortcomings in scaling and efficiency of a central server, a
+distributed system is required. We design two distributed architectures by redesigning
+existing central media server models so that the server can be exchanged with a distributed
+system and compare the implementations. Our Distributed Selective Forwarding Unit
+scales well and can be achieved with a custom interposed signaling server. The Distributed
+Multipoint Control Unit scales near perfect and can square the number of participants in
+a session by doubling the latency.
+
 ## Code Overview
 - kurento-group-call is the SFU application used
 - kurento-furkan-mcu is the MCU used
